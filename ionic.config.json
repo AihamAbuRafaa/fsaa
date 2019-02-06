@@ -1,5 +1,7 @@
 {
-  "name": "fsaa",
-  "integrations": {},
+  "name": "fs",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

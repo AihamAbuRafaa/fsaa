@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "629862427374",
+    "firebase_url": "https://fsaa-738e5.firebaseio.com",
+    "project_id": "fsaa-738e5",
+    "storage_bucket": "fsaa-738e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629862427374:android:d7684028f146758f",
+        "android_client_info": {
+          "package_name": "First.StartUp.Aiham.Adam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629862427374-1qgls7e6dkg46boq6i2vc0noeojdfkid.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjcH2ZbID7BRRFzCDn1p3Pf9R_bk7NexA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
