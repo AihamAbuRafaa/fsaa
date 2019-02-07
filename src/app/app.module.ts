@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AgmCoreModule } from '@agm/core';
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1AcW_u4SenzWkPprQe4kYuCA3saCUiww'
-    })
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +32,8 @@ import { AgmCoreModule } from '@agm/core';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

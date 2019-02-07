@@ -9,7 +9,7 @@ import { AgmCoreModule } from '@agm/core';
   ],
   imports: [
     IonicPageModule.forChild(AddPlacePage),
-    AgmCoreModule
+    AgmCoreModule,
   ],
 })
 export class AddPlacePageModule {}
