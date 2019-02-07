@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AgmCoreModule } from '@agm/core';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    Geolocation
   ]
 })
 export class AppModule {}
