@@ -23,7 +23,7 @@ export class HomePage {
   }
   goToPlaces()
   {
-    this.navCtrl.push('');
+    this.navCtrl.push('PlacesPage');
   }
   addPlace(){ 
     this.navCtrl.push('AddPlacePage');   
