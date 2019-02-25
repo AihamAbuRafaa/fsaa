@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { Location } from '../../models/location';
-import { Geolocation } from 'ionic-native';
+import { Geolocation , Camera, CameraOptions} from 'ionic-native';
+import { NgForm } from '@angular/forms';
 
 
 /**
@@ -22,9 +23,12 @@ export class AddPlacePage {
     lng: 35.778557
   };
   locationIsSet = false;
+  imageUrl='';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private modalCtrl: ModalController){
+    private modalCtrl: ModalController,
+    private loadingCtrl:LoadingController,
+    private toastCtrl:ToastController){
   }
 
   ionViewDidLoad() {
@@ -42,14 +46,41 @@ export class AddPlacePage {
 
   }
   onLocate() {
+    const loader = this.loadingCtrl.create({
+      content:'Getting your location...'
+    });
+    loader.present();
     Geolocation.getCurrentPosition().then((resp) => {
+      loader.dismiss();
       this.location.lat= resp.coords.latitude
       this.location.lng= resp.coords.longitude
       this.locationIsSet=true;
      }).catch((error) => {
+       loader.dismiss();
+       const toast = this.toastCtrl.create({
+         message:'Could get location , please pick it manullay!',
+         duration : 2500
+       })
+       toast.present();
        console.log('Error getting location', error);
      });
 
+  }
+  onSubmit(f:NgForm){
+    console.log(f.value);
+  }
+  onTakePhoto(){
+    Camera.getPicture({
+      encodingType:Camera.EncodingType.JPEG,
+      correctOrientation:true,
+    }).then(imageData=>{
+       this.imageUrl=imageData
+    }
+    ).catch(
+      err=>{
+        console.log(err)
+      }
+    );
   }
 
 }

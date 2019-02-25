@@ -57,7 +57,7 @@
       </ion-row>
       <ion-row *ngIf="locationIsSet">
         <ion-col>
-          <agm-map
+          <agm-map  name="map"
             [latitude]="location.lat"
             [longitude]="location.lng"
             [zoom]="16">
@@ -88,7 +88,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <img [src]="">
+          <img [src]="imageUrl">
         </ion-col>
       </ion-row>
       <ion-row>
