@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { Location } from '../../models/location';
 import { Geolocation , Camera, CameraOptions} from 'ionic-native';
 import { NgForm } from '@angular/forms';
+import { PlacesService } from '../../providers/places';
 
 
 /**
@@ -28,7 +29,8 @@ export class AddPlacePage {
     public navParams: NavParams,
     private modalCtrl: ModalController,
     private loadingCtrl:LoadingController,
-    private toastCtrl:ToastController){
+    private toastCtrl:ToastController,
+    private placesSvc:PlacesService){
   }
 
   ionViewDidLoad() {
@@ -66,8 +68,16 @@ export class AddPlacePage {
      });
 
   }
-  onSubmit(f:NgForm){
-    console.log(f.value);
+  onSubmit(form:NgForm){
+    this.placesSvc.addPlace(form.value.title,form.value.description,this.location,this.imageUrl)
+    form.reset();
+    this.imageUrl='';
+    this.location={
+      lat: 33.201192,
+      lng: 35.778557
+    };
+    console.log(form.value);
+    this.locationIsSet=false;
   }
   onTakePhoto(){
     Camera.getPicture({

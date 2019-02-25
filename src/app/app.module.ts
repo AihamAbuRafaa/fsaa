@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { AgmCoreModule } from '@agm/core';
+import { PlacesService } from '../providers/places';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AgmCoreModule } from '@agm/core';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
+    PlacesService
   ]
 })
 export class AppModule {}
