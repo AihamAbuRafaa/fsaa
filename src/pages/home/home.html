@@ -31,8 +31,12 @@
     </ion-item>
   </ion-card>
 
-  <button ion-button icon-start block no-margin color="primary" class="round" tappable (click)="doSearch()">
-    <ion-icon name="search"></ion-icon> Search
-  </button>
-
 </ion-content>
+
+<ion-footer>
+  <ion-item >
+  <button id="emergencyBtn" ion-button icon-start default="true" outline="true" color="danger" class="round" (click)="emergencyClicked()">
+    Emergency
+  </button>
+</ion-item>
+</ion-footer>

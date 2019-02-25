@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HomePage page.
+ * Generated class for the EmergencyPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,28 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-emergency',
+  templateUrl: 'emergency.html',
 })
-export class HomePage {
+export class EmergencyPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-  goToPlaces()
-  {
-    this.navCtrl.push('');
-  }
-  addPlace(){ 
-    this.navCtrl.push('AddPlacePage');   
-  }
-
-  emergencyClicked()
-  {
-    this.navCtrl.push('EmergencyPage');
+    console.log('ionViewDidLoad EmergencyPage');
   }
 
 }
