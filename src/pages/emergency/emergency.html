@@ -24,7 +24,7 @@
         </ion-navbar>
       </ion-header>
       
-<ion-content padding>
+<ion-content id="emergency" padding>
 
   <ion-list margin-bottom class="full-width">
     <ion-row class="rowInEmergency">  
@@ -34,13 +34,13 @@
       </button>
     </ion-row>
     <ion-row class="rowInEmergency">
-        <button id="emergencyBtns" ion-button color="danger" (click)="addPlace()" >
+        <button id="emergencyBtns" ion-button color="danger" (click)="callAmbulance()" >
             <ion-icon class="emergencyIcons" name="thermometer"></ion-icon>  
           <span>Call The Ambulance!</span>
         </button>
       </ion-row>
       <ion-row class="rowInEmergency" >
-          <button id="emergencyBtns" ion-button color="danger" (click)="addPlace()" >
+          <button id="emergencyBtns" ion-button color="danger" (click)="callFireFighting()" >
               <ion-icon class="emergencyIcons" name="flame"></ion-icon>  
             <span>Call The Fire Fighting!</span>
           </button>

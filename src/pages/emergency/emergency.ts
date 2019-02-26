@@ -22,4 +22,23 @@ export class EmergencyPage {
     console.log('ionViewDidLoad EmergencyPage');
   }
 
+  callPolic()
+  {
+
+  }
+
+  callAmbulance()
+  {
+
+  }
+
+  callFireFighting()
+  {
+
+  }
+
+
+
+
+
 }
