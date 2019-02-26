@@ -5,7 +5,7 @@ import firebase from 'firebase'
 export class AuthServiceProvider {
 
   constructor() {
-    console.log('Hello AuthServiceProvider Provider');
+    
   }
 
   signup(email: string, password: string) {

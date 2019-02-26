@@ -11,6 +11,7 @@
   </ion-navbar>
 
 </ion-header>
+{{place.location.lng}}
 
 
 <ion-content padding>
@@ -28,8 +29,8 @@
     <ion-row>
       <ion-col>
           <agm-map  name="map"
-          [latitude]="place.location.lat"
           [longitude]="place.location.lng"
+          [latitude]="place.location.lat"
           [zoom]="16">
           <agm-marker
             [latitude]="place.location.lat"
