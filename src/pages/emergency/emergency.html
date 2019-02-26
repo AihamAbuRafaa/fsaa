@@ -4,10 +4,9 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
 
     <ion-header>
-        <ion-navbar color="primary">
+        <ion-navbar color="danger">
           <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
           </button>
@@ -25,10 +24,27 @@
         </ion-navbar>
       </ion-header>
       
-
-</ion-header>
-
-
 <ion-content padding>
 
+  <ion-list margin-bottom class="full-width">
+    <ion-row class="rowInEmergency">  
+    <button id="emergencyBtns" ion-button color="danger" (click)="callPolic()" >
+        <ion-icon class="emergencyIcons" name="nuclear"></ion-icon>  
+        <span>Call The Police !</span>
+      </button>
+    </ion-row>
+    <ion-row class="rowInEmergency">
+        <button id="emergencyBtns" ion-button color="danger" (click)="addPlace()" >
+            <ion-icon class="emergencyIcons" name="thermometer"></ion-icon>  
+          <span>Call The Ambulance!</span>
+        </button>
+      </ion-row>
+      <ion-row class="rowInEmergency" >
+          <button id="emergencyBtns" ion-button color="danger" (click)="addPlace()" >
+              <ion-icon class="emergencyIcons" name="flame"></ion-icon>  
+            <span>Call The Fire Fighting!</span>
+          </button>
+        </ion-row>
+  
+  </ion-list>
 </ion-content>
