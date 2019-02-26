@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Modal } from 'ionic-angular';
 import { AddPlacePage } from '../add-place/add-place';
 import { Place } from '../../models/place';
-import { PlacesService } from '../../providers/places';
 import { PlacePage } from '../place/place';
+import { PlacesProvider } from '../../providers/places/places';
 
 /**
  * Generated class for the PlacesPage page.
@@ -19,14 +19,14 @@ import { PlacePage } from '../place/place';
 })
 export class PlacesPage {
   addPlacePage=AddPlacePage;
-  places:Place[]=[];
+  places;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     private placesSvc:PlacesService,
+     private placesSvc:PlacesProvider,
      private modalCtrl : ModalController) {
 
   }
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
     this.places=this.placesSvc.loadPlaces(); 
   }
   ionViewDidLoad() {
@@ -36,6 +36,10 @@ export class PlacesPage {
     const modal=this.modalCtrl.create('PlacePage',{place:place,index:index});
     modal.present();
 
+  }
+  addPlace()
+  {
+    this.navCtrl.push('AddPlacePage');
   }
 
 }

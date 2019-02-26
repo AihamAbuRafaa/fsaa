@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, LoadingController
 import { Location } from '../../models/location';
 import { Geolocation , Camera, CameraOptions} from 'ionic-native';
 import { NgForm } from '@angular/forms';
-import { PlacesService } from '../../providers/places';
+import { PlacesProvider } from '../../providers/places/places';
 
 
 /**
@@ -30,11 +30,11 @@ export class AddPlacePage {
     private modalCtrl: ModalController,
     private loadingCtrl:LoadingController,
     private toastCtrl:ToastController,
-    private placesSvc:PlacesService){
+    private placesSvc:PlacesProvider){
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddPlacePage');
+    
   }
   onOpenMap() {
     const modal = this.modalCtrl.create('SetLocationPage', { location: this.location, isSet: this.locationIsSet });
