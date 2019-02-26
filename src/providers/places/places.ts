@@ -12,9 +12,14 @@ import firebase from 'firebase'
 */
 @Injectable()
 export class PlacesProvider {
-  places;
-  private cardsListRef= this.adb.list<Place>('cards');
+  places:Place[]=[];
   constructor(public http: HttpClient,private adb:AngularFireDatabase) {
+     firebase.database().ref('/cards/').once('value').then(snapshot=> {
+      snapshot.forEach( item => {
+        var itemVal = item.val();
+        this.places.push(itemVal);
+    });
+     });
   }
 
   addPlace(title:string,description:string,location:any,imageUrl:string){
@@ -25,7 +30,7 @@ export class PlacesProvider {
 }
 
 loadPlaces(){
-    return this.cardsListRef;
+    return this.places;
 }
 
 deletePlace(index:number)

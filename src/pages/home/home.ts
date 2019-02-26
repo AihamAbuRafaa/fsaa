@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    
   }
   goToPlaces()
   {
@@ -32,6 +32,11 @@ export class HomePage {
   emergencyClicked()
   {
     this.navCtrl.push('EmergencyPage');
+  }
+
+  goToGood()
+  {
+    this.navCtrl.push('GoodToKnowPage')
   }
 
 }

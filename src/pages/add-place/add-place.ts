@@ -69,7 +69,11 @@ export class AddPlacePage {
 
   }
   onSubmit(form:NgForm){
+    const loadingElement =  this.loadingCtrl.create({
+    });
+    loadingElement.present();
     this.placesSvc.addPlace(form.value.title,form.value.description,this.location,this.imageUrl)
+    loadingElement.dismiss();
     form.reset();
     this.imageUrl='';
     this.location={

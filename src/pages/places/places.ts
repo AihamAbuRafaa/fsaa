@@ -19,7 +19,7 @@ import { PlacesProvider } from '../../providers/places/places';
 })
 export class PlacesPage {
   addPlacePage=AddPlacePage;
-  places;
+  places:Place[]=[];
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private placesSvc:PlacesProvider,
@@ -28,6 +28,7 @@ export class PlacesPage {
   }
   async ionViewWillEnter(){
     this.places=this.placesSvc.loadPlaces(); 
+    console.log(this.places)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlacesPage');
@@ -35,7 +36,6 @@ export class PlacesPage {
   onOpenPlace(place:Place,index:number){
     const modal=this.modalCtrl.create('PlacePage',{place:place,index:index});
     modal.present();
-
   }
   addPlace()
   {
