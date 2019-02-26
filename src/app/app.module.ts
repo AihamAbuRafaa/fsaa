@@ -9,7 +9,8 @@ import { AgmCoreModule } from '@agm/core';
 import { AngularFireModule } from '@angular/fire';
 import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/database';
 import { PlacesProvider } from '../providers/places/places';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { EmergencyServiceProvider } from '../providers/emergency-service/emergency-service'; 
 @NgModule({
   declarations: [
     MyApp,
@@ -41,7 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    PlacesProvider
+    PlacesProvider,
+    EmergencyServiceProvider
   ]
 })
 export class AppModule {}

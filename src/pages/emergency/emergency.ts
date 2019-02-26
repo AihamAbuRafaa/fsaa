@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,ModalController, NavParams } from 'ionic-angular';
+import { Countries } from '../../models/countries';
+import { EmergencyServiceProvider } from '../../providers/emergency-service/emergency-service';
 
 /**
  * Generated class for the EmergencyPage page.
@@ -14,16 +16,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'emergency.html',
 })
 export class EmergencyPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  countries:Countries[]=[];
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private countriesSvc:EmergencyServiceProvider,
+     private modalCtrl : ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmergencyPage');
   }
 
-  callPolic()
+  async ionViewWillEnter()
   {
+    this.countries = this.countriesSvc.loadCountries();
+  }
+
+  callPolice()
+  {
+
 
   }
 
