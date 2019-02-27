@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { Location } from '../../models/location';
-import { Geolocation , Camera, CameraOptions} from 'ionic-native';
+import { Geolocation,Camera } from 'ionic-native';
 import { NgForm } from '@angular/forms';
 import { PlacesProvider } from '../../providers/places/places';
+import firebase from 'firebase'
 
 
 /**
@@ -25,6 +26,7 @@ export class AddPlacePage {
   };
   locationIsSet = false;
   imageUrl='';
+  public base64Image: string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -75,7 +77,6 @@ export class AddPlacePage {
     this.placesSvc.addPlace(form.value.title,form.value.description,this.location,this.imageUrl)
     loadingElement.dismiss();
     form.reset();
-    this.imageUrl='';
     this.location={
       lat: 33.201192,
       lng: 35.778557
@@ -83,18 +84,30 @@ export class AddPlacePage {
     console.log(form.value);
     this.locationIsSet=false;
   }
-  onTakePhoto(){
-    Camera.getPicture({
+  async onTakePhoto(){
+    try{
+    const result=await Camera.getPicture({
+      destinationType: Camera.DestinationType.DATA_URL,
       encodingType:Camera.EncodingType.JPEG,
-      correctOrientation:true,
+      mediaType:Camera.MediaType.PICTURE,
+      targetWidth: 1000,
+      targetHeight: 1000
     }).then(imageData=>{
-       this.imageUrl=imageData
+      this.base64Image = `data:image/jpeg;base64,${imageData}`;
+      const i=Math.floor(Math.random() * 500) + 1  
+      this.imageUrl="image"+i;
     }
     ).catch(
       err=>{
         console.log(err)
       }
     );
+    
+    const pictures=await firebase.storage().ref(this.imageUrl).putString(this.base64Image, 'data_url').then(function(snapshot) {
+      console.log('Uploaded a base64 string!');
+    });
+    }catch(err){
+      console.log(err)
+    }
   }
-
 }

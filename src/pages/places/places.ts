@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Modal } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, Modal, LoadingController, SelectPopover } from 'ionic-angular';
 import { AddPlacePage } from '../add-place/add-place';
 import { Place } from '../../models/place';
 import { PlacePage } from '../place/place';
 import { PlacesProvider } from '../../providers/places/places';
+import { CATCH_STACK_VAR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 
 /**
  * Generated class for the PlacesPage page.
@@ -17,22 +18,34 @@ import { PlacesProvider } from '../../providers/places/places';
   selector: 'page-places',
   templateUrl: 'places.html',
 })
-export class PlacesPage {
+export class PlacesPage implements OnInit{
   addPlacePage=AddPlacePage;
   places:Place[]=[];
+  loader :any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private placesSvc:PlacesProvider,
-     private modalCtrl : ModalController) {
+     private modalCtrl : ModalController,
+     private loadingCtrl:LoadingController,) {
 
   }
-  async ionViewWillEnter(){
-    this.places=this.placesSvc.loadPlaces(); 
-    console.log(this.places)
+  async ngOnInit(){
+    try{
+      this.loader = this.loadingCtrl.create({
+        content:'Getting places...'
+      });
+      this.loader.present();
+      await this.placesSvc.getImages();
+      this.places=await this.placesSvc.loadPlaces(); 
+    }catch(err)
+    {
+      console.log(err)
+    }finally
+    {
+      this.loader.dismiss();
+    }
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PlacesPage');
-  }
+
   onOpenPlace(place:Place,index:number){
     const modal=this.modalCtrl.create('PlacePage',{place:place,index:index});
     modal.present();

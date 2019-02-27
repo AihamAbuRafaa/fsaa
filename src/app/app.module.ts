@@ -27,7 +27,7 @@ import { EmergencyServiceProvider } from '../providers/emergency-service/emergen
       authDomain: "fsaa-738e5.firebaseapp.com",
       databaseURL: "https://fsaa-738e5.firebaseio.com",
       projectId: "fsaa-738e5",
-      storageBucket: "",
+      storageBucket: "fsaa-738e5.appspot.com",
       messagingSenderId: "629862427374"
     }),
     AngularFireDatabaseModule,

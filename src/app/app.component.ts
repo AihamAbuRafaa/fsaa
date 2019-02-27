@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,7 +25,7 @@ export class MyApp {
       authDomain: "fsaa-738e5.firebaseapp.com",
       databaseURL: "https://fsaa-738e5.firebaseio.com",
       projectId: "fsaa-738e5",
-      storageBucket: "",
+      storageBucket: "fsaa-738e5.appspot.com",
       messagingSenderId: "629862427374"
     });
     firebase.auth().onAuthStateChanged(user=>{
@@ -44,6 +45,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+    
   }
   logout(){
     this.authSVC.logout();

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PlacesProvider } from '../../providers/places/places';
 
 /**
  * Generated class for the HomePage page.
@@ -13,9 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-home',
   templateUrl: 'home.html',
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public placesSvc:PlacesProvider) {
+  }
+  ngOnInit(){
+    this.placesSvc.getPlaces();
   }
 
   ionViewDidLoad() {
