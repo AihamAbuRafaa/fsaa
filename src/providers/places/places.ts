@@ -17,6 +17,7 @@ export class PlacesProvider {
     
   }
    getPlaces(){
+     this.places=[]
      return new Promise((resolve,reject)=>{
       firebase.database().ref('/cards/').once('value').then(snapshot => {
         snapshot.forEach(item => {
@@ -31,7 +32,7 @@ export class PlacesProvider {
     try {
        this.places.map(p=>{
            firebase.storage().ref('image228').getDownloadURL().then(url => {
-            p.place.image = url;
+            p.image = url;
         })
       })
       console.log(this.places)      
