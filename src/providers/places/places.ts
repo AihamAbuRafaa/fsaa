@@ -16,25 +16,29 @@ export class PlacesProvider {
   constructor(public http: HttpClient, private adb: AngularFireDatabase) {
     
   }
-  async getPlaces(){
-    this.places=[];
-     firebase.database().ref('/cards/').once('value').then(snapshot => {
-      snapshot.forEach(item => {
-        var itemVal = item.val();
-        this.places.push(itemVal);
+   getPlaces(){
+     return new Promise((resolve,reject)=>{
+      firebase.database().ref('/cards/').once('value').then(snapshot => {
+        snapshot.forEach(item => {
+          var itemVal = item.val();
+          this.places.push(itemVal);
+        });
       });
-    });
+      resolve(this.places)
+     })
   }
   async getImages() {
     try {
        this.places.map(p=>{
            firebase.storage().ref('image228').getDownloadURL().then(url => {
-            p.image = url;
+            p.place.image = url;
         })
-      })      
+      })
+      console.log(this.places)      
     } catch (err) {
       console.log(err)
     }
+
   }
 
   addPlace(title: string, description: string, location: any, imageUrl: string) {
