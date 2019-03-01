@@ -83,6 +83,7 @@ export class AddPlacePage {
     };
     console.log(form.value);
     this.locationIsSet=false;
+    this.navCtrl.pop();
   }
   async onTakePhoto(){
     try{
