@@ -13,7 +13,7 @@ import { Countries } from '../../models/countries';
 */
 @Injectable()
 export class EmergencyServiceProvider {
-   countries:Countries[]=[];
+   countries:any[]=[];
   
   constructor(public http: HttpClient , private adb:AngularFireDatabase) {
     firebase.database().ref('/data/').once('value').then(snapshot=> {

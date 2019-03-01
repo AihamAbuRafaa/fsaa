@@ -13,6 +13,7 @@ import firebase from 'firebase'
 @Injectable()
 export class PlacesProvider {
   places: Place[] = [];
+  public country :number=108;
   constructor(public http: HttpClient, private adb: AngularFireDatabase) {
     
   }
@@ -49,7 +50,7 @@ export class PlacesProvider {
 
   addPlace(title: string, description: string, location: any, imageUrl: string) {
     let image="";
-    const place = new Place(title, description, location, imageUrl,false,image);
+    const place = new Place(title, description, location, imageUrl,false,108,image);
     let data = this.adb.list("/cards/").push({
       place
     });
@@ -58,7 +59,7 @@ export class PlacesProvider {
   loadPlaces() {
     this.places=this.places.filter(i=>{
       let a:any=i;
-      if(a.place.isApproved==true)
+      if(a.place.isApproved==true&&a.place.country==this.country)
       {
         return i;
       }

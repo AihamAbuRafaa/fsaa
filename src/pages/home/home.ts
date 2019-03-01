@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlacesProvider } from '../../providers/places/places';
+import { CountriesProvider } from '../../providers/countries/countries';
+import { CATCH_STACK_VAR } from '@angular/compiler/src/output/abstract_emitter';
 
 /**
  * Generated class for the HomePage page.
@@ -16,10 +18,22 @@ import { PlacesProvider } from '../../providers/places/places';
 })
 export class HomePage implements OnInit{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public placesSvc:PlacesProvider) {
+  countries:any;
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+    public placesSvc:PlacesProvider,
+    private countriesSvc : CountriesProvider) {
   }
-  ngOnInit(){
-    this.placesSvc.getPlaces();
+  async ngOnInit(){
+    try{
+    await this.placesSvc.getPlaces();
+    await this.countriesSvc.getCountries();
+    this.countries=this.countriesSvc.loadCountries();
+    console.log(this.countries)
+    }catch(err)
+    {
+      console.log(err)
+    }
   }
 
   ionViewDidLoad() {
@@ -41,6 +55,10 @@ export class HomePage implements OnInit{
   goToGood()
   {
     this.navCtrl.push('GoodToKnowPage')
+  }
+  onChange(i){
+    this.countriesSvc.countryNow=i;
+    this.placesSvc.country=i;
   }
 
 }

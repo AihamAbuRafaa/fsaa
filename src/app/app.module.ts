@@ -12,6 +12,7 @@ import { PlacesProvider } from '../providers/places/places';
 import { HttpClientModule } from '@angular/common/http';
 import { EmergencyServiceProvider } from '../providers/emergency-service/emergency-service'; 
 import { CallNumber } from 'ionic-native';
+import { CountriesProvider } from '../providers/countries/countries';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CallNumber } from 'ionic-native';
     AuthServiceProvider,
     PlacesProvider,
     EmergencyServiceProvider,
-    CallNumber
+    CallNumber,
+    CountriesProvider
   ]
 })
 export class AppModule {}

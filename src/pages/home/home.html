@@ -20,11 +20,19 @@
         </ion-item>
     <ion-item tappable (click)="goToPlaces()" class="border-bottom">
       <ion-icon name="search" color="primary" item-left></ion-icon>
-      <span>Awesome Places Next To Me!</span>
+      <h3>Awesome Places In Selected Country!</h3>
     </ion-item>
     <ion-item tappable (click)="addPlace()" class="border-bottom">
       <ion-icon name="add" color="primary" item-left></ion-icon>
       <span>Add An Awesome Place!</span>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label>Where you want to go?</ion-label>
+      <ion-select #c value="" ok-text="Okay" cancel-text="Dismiss" (ionChange)="onChange(c.value)">
+        <ion-option *ngFor="let co of countries; let i =index" value="{{i}}">{{co.Country.Name}}</ion-option>
+      </ion-select>
     </ion-item>
   </ion-card>
 

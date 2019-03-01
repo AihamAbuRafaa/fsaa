@@ -60,6 +60,7 @@ export class AddPlacePage {
         message: 'Could get location , please pick it manullay!',
         duration: 2500
       })
+      
       toast.present();
       console.log('Error getting location', error);
     });
