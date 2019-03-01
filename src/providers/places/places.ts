@@ -17,7 +17,7 @@ export class PlacesProvider {
     
   }
    getPlaces(){
-     this.places=[]
+     this.places=[];
      return new Promise((resolve,reject)=>{
       firebase.database().ref('/cards/').once('value').then(snapshot => {
         snapshot.forEach(item => {
@@ -31,9 +31,14 @@ export class PlacesProvider {
   async getImages() {
     try {
        this.places.map(p=>{
-           firebase.storage().ref('image228').getDownloadURL().then(url => {
+         let pa : any =p;
+         if(pa.place.imageUrl)
+         {
+           firebase.storage().ref(pa.place.imageUrl).getDownloadURL().then(url => {
             p.image = url;
+            
         })
+      }
       })
       console.log(this.places)      
     } catch (err) {
@@ -44,13 +49,20 @@ export class PlacesProvider {
 
   addPlace(title: string, description: string, location: any, imageUrl: string) {
     let image="";
-    const place = new Place(title, description, location, imageUrl,image);
+    const place = new Place(title, description, location, imageUrl,false,image);
     let data = this.adb.list("/cards/").push({
       place
     });
   }
 
   loadPlaces() {
+    this.places=this.places.filter(i=>{
+      let a:any=i;
+      if(a.place.isApproved==true)
+      {
+        return i;
+      }
+    })
     return this.places;
   }
 

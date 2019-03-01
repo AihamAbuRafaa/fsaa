@@ -37,6 +37,7 @@ export class PlacesPage implements OnInit{
       this.loader.present();
       await this.placesSvc.getImages();
       this.places=await this.placesSvc.loadPlaces(); 
+      console.log(this.places)
     }catch(err)
     {
       console.log(err)
