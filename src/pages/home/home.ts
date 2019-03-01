@@ -47,6 +47,11 @@ export class HomePage implements OnInit{
     this.navCtrl.push('AddPlacePage');   
   }
 
+  searchNextToYou()
+  {
+    this.navCtrl.push('SearchNextToYouPage');       
+  }
+
   emergencyClicked()
   {
     this.navCtrl.push('EmergencyPage');
