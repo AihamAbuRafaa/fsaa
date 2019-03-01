@@ -46,6 +46,7 @@ export class MyApp {
       splashScreen.hide();
     });
     
+    
   }
   logout(){
     this.authSVC.logout();

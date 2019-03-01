@@ -13,17 +13,20 @@ import firebase from 'firebase'
 @Injectable()
 export class PlacesProvider {
   places: Place[] = [];
+  cachedPlaces:Place[]=[];
   public country :number=108;
   constructor(public http: HttpClient, private adb: AngularFireDatabase) {
     
   }
    getPlaces(){
-     this.places=[];
      return new Promise((resolve,reject)=>{
       firebase.database().ref('/cards/').once('value').then(snapshot => {
+        this.places=[];
+        this.cachedPlaces=[];
         snapshot.forEach(item => {
           var itemVal = item.val();
           this.places.push(itemVal);
+          this.cachedPlaces.push(itemVal);
         });
       });
       resolve(this.places)
@@ -36,12 +39,10 @@ export class PlacesProvider {
          if(pa.place.imageUrl)
          {
            firebase.storage().ref(pa.place.imageUrl).getDownloadURL().then(url => {
-            p.image = url;
-            
+            p.image = url;    
         })
       }
       })
-      console.log(this.places)      
     } catch (err) {
       console.log(err)
     }
@@ -57,6 +58,7 @@ export class PlacesProvider {
   }
 
   loadPlaces() {
+    this.places=this.cachedPlaces;
     this.places=this.places.filter(i=>{
       let a:any=i;
       if(a.place.isApproved==true&&a.place.country==this.country)

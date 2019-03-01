@@ -57,8 +57,9 @@ export class HomePage implements OnInit{
     this.navCtrl.push('GoodToKnowPage')
   }
   onChange(i){
-    this.countriesSvc.countryNow=i;
-    this.placesSvc.country=i;
+    this.countriesSvc.countryNow=i-0;
+    this.placesSvc.country=i-0;
+    console.log(i)
   }
 
 }
