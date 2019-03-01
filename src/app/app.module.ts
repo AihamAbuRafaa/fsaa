@@ -11,7 +11,7 @@ import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/data
 import { PlacesProvider } from '../providers/places/places';
 import { HttpClientModule } from '@angular/common/http';
 import { EmergencyServiceProvider } from '../providers/emergency-service/emergency-service'; 
-import { CallNumber } from '@ionic-native/call-number/ngx';
+import { CallNumber } from 'ionic-native';
 
 @NgModule({
   declarations: [

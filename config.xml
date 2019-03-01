@@ -102,11 +102,7 @@
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <engine name="browser" spec="^5.0.4" />
     <engine name="android" spec="7.1.4" />
-<<<<<<< HEAD
-    <plugin name="cordova-plugin-camera" spec="4.0.3" />
-    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
-=======
->>>>>>> 89c9d6172f813b0d503e879bb9f7b442b061f9b9
 </widget>
