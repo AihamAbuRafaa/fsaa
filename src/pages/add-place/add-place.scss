@@ -2,5 +2,7 @@ page-add-place {
   agm-map {
         height: 250px;
       }
-
+      #linear-bg{
+        background: linear-gradient(to bottom,white 0%,#488aff 100%);
+    }
 }
