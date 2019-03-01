@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmergencyServiceProvider } from '../providers/emergency-service/emergency-service'; 
 import { CallNumber } from 'ionic-native';
 import { CountriesProvider } from '../providers/countries/countries';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CountriesProvider } from '../providers/countries/countries';
     PlacesProvider,
     EmergencyServiceProvider,
     CallNumber,
-    CountriesProvider
+    CountriesProvider,
+    NativeGeocoder
   ]
 })
 export class AppModule {}

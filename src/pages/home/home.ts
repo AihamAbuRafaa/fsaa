@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { PlacesProvider } from '../../providers/places/places';
 import { CountriesProvider } from '../../providers/countries/countries';
 import { CATCH_STACK_VAR } from '@angular/compiler/src/output/abstract_emitter';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { Geolocation } from 'ionic-native';
+import { Place } from '../../models/place';
+import { Location } from '../../models/location';
 
 /**
  * Generated class for the HomePage page.
@@ -19,17 +23,51 @@ import { CATCH_STACK_VAR } from '@angular/compiler/src/output/abstract_emitter';
 export class HomePage implements OnInit{
 
   countries:any;
+  name:any;
+  location:Location={
+    lat:0,
+    lng:0
+  }
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public placesSvc:PlacesProvider,
-    private countriesSvc : CountriesProvider) {
+    private countriesSvc : CountriesProvider,
+    private nativeGeocoder: NativeGeocoder,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,) {
   }
   async ngOnInit(){
+    const loader = this.loadingCtrl.create({
+      content: 'Getting your location...'
+    });
+    loader.present();
     try{
     await this.placesSvc.getPlaces();
     await this.countriesSvc.getCountries();
     this.countries=this.countriesSvc.loadCountries();
-    console.log(this.countries)
+
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+  };
+
+  Geolocation.getCurrentPosition().then((resp) => {
+    loader.dismiss();
+    this.location.lat = resp.coords.latitude
+    this.location.lng = resp.coords.longitude
+  }).catch((error) => {
+    loader.dismiss();
+    const toast = this.toastCtrl.create({
+      message: 'Could get location , please pick it manullay!',
+      duration: 2500
+    })
+  })
+    
+  this.nativeGeocoder.reverseGeocode(this.location.lat, this.location.lng, options)
+    .then((result: NativeGeocoderReverseResult[]) => this.name=JSON.stringify(result[0]))
+    .catch((error: any) => console.log(error));
+  
+    console.log(this.name)
     }catch(err)
     {
       console.log(err)
