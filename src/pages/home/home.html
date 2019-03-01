@@ -11,7 +11,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="animated fadeIn common-bg">
+<ion-content id="linear-bg" padding class="animated fadeIn common-bg">
 
   <ion-card no-margin margin-bottom class="full-width">
       <ion-item tappable (click)="goToGood()" class="border-bottom">
@@ -30,9 +30,9 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-item >
-  <button id="emergencyBtn" ion-button icon-start default="true" outline="true" color="danger" class="round" (click)="emergencyClicked()">
+<ion-footer >
+  <ion-item id="footer">
+  <button ion-button id="emergencyBtn" ion-button icon-start default="true" outline="true" color="danger" class="round" (click)="emergencyClicked()">
     Emergency
   </button>
 </ion-item>

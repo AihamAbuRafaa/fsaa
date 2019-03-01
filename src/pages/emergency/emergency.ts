@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController,ModalController, NavParams } from 'ionic-angular';
 import { Countries } from '../../models/countries';
 import { EmergencyServiceProvider } from '../../providers/emergency-service/emergency-service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 /**
  * Generated class for the EmergencyPage page.
@@ -20,7 +21,7 @@ export class EmergencyPage {
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private countriesSvc:EmergencyServiceProvider,
-     private modalCtrl : ModalController) {
+     private callNumber : CallNumber) {
   }
 
   ionViewDidLoad() {
@@ -34,22 +35,22 @@ export class EmergencyPage {
 
   callPolice()
   {
-
-
+    this.callNumber.callNumber("100", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
   callAmbulance()
   {
-
+    this.callNumber.callNumber("101", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 
   callFireFighting()
   {
-
+    this.callNumber.callNumber("102", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
-
-
-
-
-
 }

@@ -11,6 +11,8 @@ import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/data
 import { PlacesProvider } from '../providers/places/places';
 import { HttpClientModule } from '@angular/common/http';
 import { EmergencyServiceProvider } from '../providers/emergency-service/emergency-service'; 
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +45,8 @@ import { EmergencyServiceProvider } from '../providers/emergency-service/emergen
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     PlacesProvider,
-    EmergencyServiceProvider
+    EmergencyServiceProvider,
+    CallNumber
   ]
 })
 export class AppModule {}

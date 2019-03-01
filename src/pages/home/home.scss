@@ -7,5 +7,14 @@ page-home {
         display: block !important;
         width:35%;
         margin-bottom: 10%;
+        font-weight: bold;
+    }
+
+    #linear-bg{
+        background: linear-gradient(to bottom,white 0%,#488aff 100%);
+    }
+
+    #footer{
+        background: linear-gradient(to bottom,#488aff 5%,white 100%) ;
     }
 }

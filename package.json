@@ -22,6 +22,7 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/call-number": "^5.2.0",
     "@ionic-native/core": "~4.18.0",
     "@ionic-native/geolocation": "^5.0.0",
     "@ionic-native/google-plus": "^4.20.0",
@@ -31,6 +32,7 @@
     "@ionic/storage": "2.2.0",
     "@reactivex/rxjs": "^5.5.3",
     "angularfire2": "^5.1.1",
+    "call-number": "1.0.1",
     "cordova-android": "7.1.4",
     "cordova-browser": "^5.0.4",
     "cordova-plugin-browsertab": "0.2.0",
@@ -85,7 +87,8 @@
         "FACEBOOK_ANDROID_SDK_VERSION": "4.38.1"
       },
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "browser",

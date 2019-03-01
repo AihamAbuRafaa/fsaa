@@ -10,7 +10,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content id="linear-bg" padding >
   <ion-card *ngFor="let place of places; let i = index" (click)="onOpenPlace(place,i)">
     <img [src]="place.image">
     <ion-card-content>
