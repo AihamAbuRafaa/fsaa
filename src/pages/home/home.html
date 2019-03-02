@@ -14,13 +14,14 @@
 <ion-content id="linear-bg" padding class="animated fadeIn common-bg">
 
   <ion-card no-margin margin-bottom class="full-width">
-      <ion-item tappable (click)="goToGood()" class="border-bottom">
-          <ion-icon name="happy" color="primary" item-left></ion-icon>
-          <span>Good To Know!</span>
-        </ion-item>
+
     <ion-item tappable (click)="goToPlaces()" class="border-bottom">
       <ion-icon name="search" color="primary" item-left></ion-icon>
       <h3>Awesome Places In Selected Country!</h3>
+    </ion-item>
+    <ion-item tappable (click)="goToPlacesNextMe()" class="border-bottom">
+      <ion-icon name="search" color="primary" item-left></ion-icon>
+      <span>Awesome Places Next To Me!</span>
     </ion-item>
     <ion-item tappable (click)="addPlace()" class="border-bottom">
       <ion-icon name="add" color="primary" item-left></ion-icon>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { PlacesProvider } from '../../providers/places/places';
 import { CountriesProvider } from '../../providers/countries/countries';
 import { CATCH_STACK_VAR } from '@angular/compiler/src/output/abstract_emitter';
@@ -37,7 +37,8 @@ export class HomePage implements OnInit{
     private nativeGeocoder: NativeGeocoder,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private autah:AuthServiceProvider) {
+    private autah:AuthServiceProvider,
+    private alertCtrl:AlertController) {
   }
   async ngOnInit(){
     const loader = this.loadingCtrl.create({
@@ -58,6 +59,9 @@ export class HomePage implements OnInit{
     loader.dismiss();
     this.location.lat = resp.coords.latitude
     this.location.lng = resp.coords.longitude
+    this.placesSvc.mylocation.lat=resp.coords.latitude
+    this.placesSvc.mylocation.lng=resp.coords.longitude
+
   }).catch((error) => {
     loader.dismiss();
     const toast = this.toastCtrl.create({
@@ -87,6 +91,34 @@ export class HomePage implements OnInit{
   goToPlaces()
   {
     this.navCtrl.push('PlacesPage');
+  }
+  goToPlacesNextMe(){
+    let alert = this.alertCtrl.create({
+      title: 'Destiniton',
+      inputs: [
+        {
+          name: 'search',
+          placeholder: 'Write number (km)'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            
+          }
+        },
+        {
+          text: 'Search',
+          handler: sear => {
+            this.navCtrl.push('PlacesNextMePage',{search:sear});
+          }
+          }
+      ]
+    });
+    alert.present();
+
   }
   addPlace(){ 
     this.navCtrl.push('AddPlacePage');   
