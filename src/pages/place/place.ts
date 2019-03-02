@@ -56,7 +56,7 @@ export class PlacePage {
           text: 'Report',
           handler: report => {
             let index=this.placeSvc.places.findIndex(d=> d.place.description==this.place.description)
-            let a = firebase.database().ref("/cards/").child(this.placeSvc.keys[index]).child('reports').push({
+            let a = firebase.database().ref("/cards/").child(this.placeSvc.keys[index]).child('reports').set({
               report,
             });
           }
