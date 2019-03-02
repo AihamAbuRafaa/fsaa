@@ -24,15 +24,15 @@ export class SetLocationPage {
     {
       this.marker=this.location;
     }
-    console.log(this.location)
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SetLocationPage');
+
   }
   onSetMarker(event:any)
   {
-    console.log(event.coords)
+
     this.marker=new Location(event.coords.lat,event.coords.lng);
   }
   onConfirm() {

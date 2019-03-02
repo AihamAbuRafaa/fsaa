@@ -14,13 +14,28 @@ export class MyApp {
   homepage:any='HomePage'
   signinpage : any ='SigninPage'
   isAuthenticated =false;
+  name:string;
+  user:any;
   @ViewChild(Nav) nav: Nav;
   constructor(platform: Platform,
      statusBar: StatusBar, 
      private authSVC : AuthServiceProvider,
      splashScreen: SplashScreen,
      ) {
-    firebase.initializeApp({
+    this.init()
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+    this.getUser();
+    this.getName();
+
+    
+  }
+  async init(){
+   await firebase.initializeApp({
       apiKey: "AIzaSyDc607f1SpX9XSskVH_MJcvvVzIgzntX30",
       authDomain: "fsaa-738e5.firebaseapp.com",
       databaseURL: "https://fsaa-738e5.firebaseio.com",
@@ -28,10 +43,43 @@ export class MyApp {
       storageBucket: "fsaa-738e5.appspot.com",
       messagingSenderId: "629862427374"
     });
-    firebase.auth().onAuthStateChanged(user=>{
+    
+
+  }
+  logout(){
+    this.authSVC.logout();
+    this.nav.setRoot('LoginPage')
+  }
+
+  myPlaces(){
+    this.nav.push('PlacesPage',{i:true});
+  }
+
+  getName() {
+    return new Promise((resolve, reject) => {
+       firebase.database().ref('/users/').once('value').then(snapshot => {
+        snapshot.forEach(item => {
+          let i=item.val()
+          if(this.user)
+          {
+          if(i.uid==this.user.uid)
+          {
+            this.name=i.name
+          }
+        }
+        });
+      });
+      this.authSVC.name=this.name;
+      resolve(this.name)
+    })
+  }
+
+  getUser(){
+     firebase.auth().onAuthStateChanged(user=>{
       if(user){
         this.isAuthenticated=true;
         this.rootPage='HomePage';
+        this.user=user;
       }
       else
       {
@@ -39,17 +87,5 @@ export class MyApp {
         this.rootPage='LoginPage';
       }
     })
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-    
-    
-  }
-  logout(){
-    this.authSVC.logout();
-    this.nav.setRoot('LoginPage')
   }
 }

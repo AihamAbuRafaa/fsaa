@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -9,5 +10,8 @@ import { HomePage } from './home';
   imports: [
     IonicPageModule.forChild(HomePage),
   ],
+  providers:[
+    NativeGeocoder
+  ]
 })
 export class HomePageModule {}

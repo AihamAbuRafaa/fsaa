@@ -21,7 +21,7 @@ export class SearchNextToYouPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchNextToYouPage');
+
   }
 
   search(event : any , what:string ){
