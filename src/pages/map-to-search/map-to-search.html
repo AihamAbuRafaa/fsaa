@@ -6,26 +6,22 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>mapToSearch</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Searching For : {{what}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content id="linear-bg" padding>
-<div>
-  <ion-row *ngIf="locationIsSet">
-    <ion-col>
-      <agm-map  name="map"
-        [latitude]="location.lat"
-        [longitude]="location.lng"
-        [zoom]="16">
-        <agm-marker
-          [latitude]="location.lat"
-          [longitude]="location.lng"></agm-marker>
-      </agm-map>
-    </ion-col>
-  </ion-row>
-</div>
-</ion-content>
+<ion-content padding>
+
+  <div #map id="map"></div> 
+  
+  <div style="width : 100% ;height: 60%">
+      <ion-list>
+      <ion-item *ngFor="let place of places">
+          <p></p>
+      </ion-item>
+      </ion-list>
+  </div>
+  </ion-content>
