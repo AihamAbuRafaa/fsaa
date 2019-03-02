@@ -52,12 +52,14 @@ export class PlacesProvider {
 
   }
 
-  addPlace(title: string, description: string, location: any, imageUrl: string, uid: string) {
+  async addPlace(title: string, description: string, location: any, imageUrl: string, uid: string) {
     let image = "";
     const place = new Place(title, description, location, imageUrl, false, 108, uid, image);
-    let data = this.adb.list("/cards/").push({
+    let data =await this.adb.list("/cards/").push({
       place
     });
+    await this.getPlaces();
+    await this.getImages();
   }
 
   loadPlaces() {
@@ -65,7 +67,13 @@ export class PlacesProvider {
     return this.places;
   }
 
-  deletePlace(i) {
+  async deletePlace(i) {
+    await this.removePlace(i);
+    await this.getPlaces();
+    await this.getImages();
+  }
+
+   removePlace(i){
     return new Promise((resolve, reject) => {
       let index = this.places.findIndex(p => p.place.description == i.description)
       firebase.database().ref('cards').child(this.keys[index]).remove();
