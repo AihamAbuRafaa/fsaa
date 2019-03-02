@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the SearchNextToYouPage page.
  *
@@ -15,11 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SearchNextToYouPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchNextToYouPage');
   }
 
+  search(event : any , what:string ){
+    this.navCtrl.push('MapToSearchPage',{
+      what:what
+    });
+  }
 }

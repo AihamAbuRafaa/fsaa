@@ -15,24 +15,24 @@
 
 <ion-content padding id="linear-bg">
   <ion-item>
-    <button ion-button id="atmBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="searchAtm()">
+    <button ion-button id="atmBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'atm')">
         Atms
     </button>
   </ion-item>
 
   <ion-item>
-      <button ion-button id="hotelsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="searchHotels()">
+      <button ion-button id="hotelsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'hotel')">
           Hotels
       </button>
   </ion-item>
 
-    <ion-item>
-        <button ion-button id="hospitalBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="searchHospital()">
+    <ion-item >
+        <button ion-button id="hospitalBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'hospital')">
             Hospitals
         </button>
     </ion-item>
     <ion-item>
-        <button ion-button id="mallsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="searchMalls()">
+        <button ion-button id="mallsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event,'mall')">
             Malls
         </button>
     </ion-item>    

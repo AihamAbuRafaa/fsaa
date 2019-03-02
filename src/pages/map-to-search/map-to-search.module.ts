@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SearchNextToYouPage } from './search-next-to-you';
+import { MapToSearchPage } from './map-to-search';
 import { AgmCoreModule } from '@agm/core';
-
 @NgModule({
   declarations: [
-    SearchNextToYouPage,
+    MapToSearchPage,
   ],
   imports: [
-    IonicPageModule.forChild(SearchNextToYouPage),
+    IonicPageModule.forChild(MapToSearchPage),
     AgmCoreModule,
   ],
 })
-export class SearchNextToYouPageModule {}
+export class MapToSearchPageModule {}
