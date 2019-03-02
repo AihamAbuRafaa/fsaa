@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Place } from '../../models/place';
 import firebase from 'firebase'
+import { Location } from '../../models/location';
 
 /*
   Generated class for the PlacesProvider provider.
@@ -18,6 +19,10 @@ export class PlacesProvider {
   public country: number = 108;
   uid: string;
   name:string;
+  mylocation:Location={
+    lat:0,
+    lng:0
+  }
   constructor(public http: HttpClient, private adb: AngularFireDatabase, ) {
 
   }
@@ -90,6 +95,24 @@ export class PlacesProvider {
   async loadMyPlaces() {
     this.places = this.cachedPlaces;
     return this.places;
+  }
+
+   getDistanceFromLatLonInKm(lat1,lon1) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(this.mylocation.lat-lat1);  // deg2rad below
+    var dLon = this.deg2rad(this.mylocation.lng-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(this.mylocation.lat)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+  }
+  
+   deg2rad(deg) {
+    return deg * (Math.PI/180)
   }
 
 

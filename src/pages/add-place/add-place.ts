@@ -65,6 +65,7 @@ export class AddPlacePage {
       toast.present();
       console.log('Error getting location', error);
     });
+    console.log(this.location)
 
   }
   async onSubmit(form: NgForm) {

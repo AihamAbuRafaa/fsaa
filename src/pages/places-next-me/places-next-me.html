@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="addPlace()" >
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Awesome Places</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content id="linear-bg" padding >
+  <ion-card *ngFor="let place of places; let i = index" (click)="onOpenPlace(place,i)">
+     
+    <ion-card-content>
+        <h2>{{place.place.dist}}Km From You</h2>
+      <ion-card-title>
+        {{place.place.title}}
+      </ion-card-title>
+      
+    </ion-card-content>
+    <img height="400" width="42" [src]="place.image">
+  </ion-card>
+</ion-content>
