@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Modal, LoadingController, SelectPopover } from 'ionic-angular';
 import { AddPlacePage } from '../add-place/add-place';
 import { Place } from '../../models/place';
-import { PlacePage } from '../place/place';
 import { PlacesProvider } from '../../providers/places/places';
-import { CATCH_STACK_VAR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
+import firebase from 'firebase'
 
 /**
  * Generated class for the PlacesPage page.
@@ -22,6 +21,8 @@ export class PlacesPage implements OnInit{
   addPlacePage=AddPlacePage;
   places:Place[]=[];
   loader :any;
+  isMy:boolean=false;
+  uid:string;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private placesSvc:PlacesProvider,
@@ -31,12 +32,40 @@ export class PlacesPage implements OnInit{
   }
   async ngOnInit(){
     try{
+      let ww=this.navParams.get('i');
       this.loader = this.loadingCtrl.create({
         content:'Getting places...'
       });
-      this.loader.present();
+      
       await this.placesSvc.getImages();
       this.places=await this.placesSvc.loadPlaces(); 
+     
+      this.loader.present();
+      if(!ww)
+      {
+        this.places=this.places.filter(i=>{
+          let a:any=i;
+          if(a.place.isApproved==true&&a.place.country==this.placesSvc.country)
+          {
+            return i;
+          }
+        })
+    }else
+    {
+      await firebase.auth().onAuthStateChanged(user=>{
+        if(user){
+          this.uid=user.uid;
+        }
+      })
+      this.places=this.places.filter(i=>{
+        let a:any=i;
+        if(a.place.uid==this.uid)
+        {
+          return i;
+        }
+      })
+      this.isMy=true;
+    }
     }catch(err)
     {
       console.log(err)
@@ -47,7 +76,8 @@ export class PlacesPage implements OnInit{
   }
 
   onOpenPlace(place:Place,index:number){
-    const modal=this.modalCtrl.create('PlacePage',{place:place,index:index});
+
+    const modal=this.modalCtrl.create('PlacePage',{place:place,index:index,is:this.isMy});
     modal.present();
   }
   addPlace()

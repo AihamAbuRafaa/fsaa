@@ -19,7 +19,7 @@ export class SearchNextToYouPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchNextToYouPage');
+
   }
 
 }

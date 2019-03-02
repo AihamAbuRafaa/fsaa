@@ -12,7 +12,7 @@ export class CountriesProvider {
   countries:any;
   countryNow:number=108;
   constructor(public http: HttpClient) {
-    console.log('Hello CountriesProvider Provider');
+
   }
   getCountries()
   {

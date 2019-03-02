@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { NgForm } from '@angular/forms';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 /**
  * Generated class for the SignupPage page.
@@ -21,7 +22,8 @@ export class SignupPage {
      public navParams: NavParams,
      private authSVC:AuthServiceProvider,
      private loadingCtrl:LoadingController,
-     private alerCtrl : AlertController) {
+     private alerCtrl : AlertController,
+     private adb: AngularFireDatabase,) {
   }
 
 
@@ -34,6 +36,10 @@ export class SignupPage {
     this.authSVC.signup(form.value.email,form.value.password).then(
       data=>{
         loading.dismiss();
+        let dataa = this.adb.list("/users/").push({
+          uid:data.user.uid,
+          name:form.value.fullname
+        });
       })
       .catch(error=>{
         loading.dismiss();

@@ -20,6 +20,7 @@ export class AddPlacePage {
   locationIsSet = false;
   imageUrl = '';
   public base64Image: string;
+  uid:string;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private modalCtrl: ModalController,
@@ -66,18 +67,23 @@ export class AddPlacePage {
     });
 
   }
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     const loadingElement = this.loadingCtrl.create({
     });
     loadingElement.present();
-    this.placesSvc.addPlace(form.value.title, form.value.description, this.location, this.imageUrl)
+    await firebase.auth().onAuthStateChanged(user=>{
+      if(user){
+        this.uid=user.uid;
+      }
+    })
+
+    this.placesSvc.addPlace(form.value.title, form.value.description, this.location, this.imageUrl,this.uid)
     loadingElement.dismiss();
     form.reset();
     this.location = {
       lat: 33.201192,
       lng: 35.778557
     };
-    console.log(form.value);
     this.locationIsSet = false;
     this.navCtrl.pop();
   }

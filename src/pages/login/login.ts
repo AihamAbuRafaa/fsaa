@@ -32,7 +32,7 @@ export class LoginPage {
 
   // login and go to home page
   login(form : NgForm) {
-    console.log("hi")
+
     const loading=this.loadingCtrl.create({
       content:"Signing you in...",
     });
@@ -69,13 +69,13 @@ export class LoginPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
+
           }
         },
         {
           text: 'Send',
           handler: data => {
-            console.log(data);
+
             this.resetPassword(data.email);
             let toast = this.toastCtrl.create({
               message: 'Email was sended successfully',

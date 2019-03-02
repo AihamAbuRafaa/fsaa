@@ -7,7 +7,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
 import { Geolocation } from 'ionic-native';
 import { Place } from '../../models/place';
 import { Location } from '../../models/location';
-
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import firebase from 'firebase'
 /**
  * Generated class for the HomePage page.
  *
@@ -28,13 +29,15 @@ export class HomePage implements OnInit{
     lat:0,
     lng:0
   }
+  user:any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public placesSvc:PlacesProvider,
     private countriesSvc : CountriesProvider,
     private nativeGeocoder: NativeGeocoder,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,) {
+    private toastCtrl: ToastController,
+    private autah:AuthServiceProvider) {
   }
   async ngOnInit(){
     const loader = this.loadingCtrl.create({
@@ -62,12 +65,16 @@ export class HomePage implements OnInit{
       duration: 2500
     })
   })
+  await firebase.auth().onAuthStateChanged(user=>{
+    this.user=user;
+  })
+
+
     
   this.nativeGeocoder.reverseGeocode(this.location.lat, this.location.lng, options)
     .then((result: NativeGeocoderReverseResult[]) => this.name=JSON.stringify(result[0]))
     .catch((error: any) => console.log(error));
   
-    console.log(this.name)
     }catch(err)
     {
       console.log(err)
@@ -102,7 +109,7 @@ export class HomePage implements OnInit{
   onChange(i){
     this.countriesSvc.countryNow=i-0;
     this.placesSvc.country=i-0;
-    console.log(i)
+
   }
 
 }

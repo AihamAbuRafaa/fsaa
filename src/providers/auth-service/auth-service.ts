@@ -3,7 +3,7 @@ import firebase from 'firebase'
 
 @Injectable()
 export class AuthServiceProvider {
-
+  name:string;
   constructor() {
     
   }

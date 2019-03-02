@@ -11,40 +11,37 @@
   </ion-navbar>
 
 </ion-header>
-{{place.location.lng}}
 
 
 <ion-content id="linear-bg" padding>
   <ion-grid>
-    <ion-row>
-      <ion-col text-center>
-        <img [src]="place.image">
-      </ion-col>
-    </ion-row>
+
     <ion-row>
       <ion-col>
         <p>{{place.description}}</p>
       </ion-col>
     </ion-row>
+
     <ion-row>
       <ion-col>
-          <agm-map  name="map"
-          [longitude]="place.location.lng"
-          [latitude]="place.location.lat"
-          [zoom]="16">
-          <agm-marker
-            [latitude]="place.location.lat"
-            [longitude]="place.location.lng"></agm-marker>
+        <agm-map name="map" [longitude]="place.location.lng" [latitude]="place.location.lat" [zoom]="16">
+          <agm-marker [latitude]="place.location.lat" [longitude]="place.location.lng"></agm-marker>
         </agm-map>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button 
-        block
-        (click)="onLeave()">Leave
+        <button ion-button block (click)="onLeave()">Leave
         </button>
       </ion-col>
+      <ion-col *ngIf="isDelete">
+        <button color="danger" ion-button block (click)="onDelete()">Delete
+        </button>
+      </ion-col>
+      <ion-col>
+          <button ion-button block (click)="onReport()">Report
+          </button>
+        </ion-col>
     </ion-row>
   </ion-grid>
 
