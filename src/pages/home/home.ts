@@ -98,7 +98,7 @@ export class HomePage implements OnInit{
       inputs: [
         {
           name: 'search',
-          placeholder: 'Write number (km)'
+          placeholder: 'Write distance (km)'
         },
       ],
       buttons: [
