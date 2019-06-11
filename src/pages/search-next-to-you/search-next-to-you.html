@@ -15,40 +15,48 @@
 
 <ion-content padding id="linear-bg">
   <ion-item>
-    <button ion-button id="atmBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'atm')">
+      
+    <button ion-button id="atmBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event, 'atm')">
+        <ion-icon name="card"></ion-icon>
         Atms
     </button>
   </ion-item>
 
   <ion-item>
-      <button ion-button id="hotelsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'supermarket')">
+      <button ion-button id="hotelsBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event, 'supermarket')">
+          <ion-icon name="cart"></ion-icon>
         Supermarket
       </button>
   </ion-item>
 
     <ion-item >
-        <button ion-button id="hospitalBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event, 'restaurant')">
+        <button ion-button id="hospitalBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event, 'restaurant')">
+            <ion-icon name="restaurant"></ion-icon>
           Restaurants
         </button>
     </ion-item>
     <ion-item>
-        <button ion-button id="mallsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event,'shopping_mall')">
+        <button ion-button id="mallsBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event,'shopping_mall')">
+            <ion-icon name="cart"></ion-icon>
           Shopping Malls
         </button>
     </ion-item>
     <ion-item>
-      <button ion-button id="doctorsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event,'doctor')">
+      <button ion-button id="doctorsBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event,'doctor')">
+          <ion-icon name="medkit"></ion-icon>
         Doctors
       </button>
   </ion-item>  
   <ion-item>
-    <button ion-button id="banksBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event,'bank')">
+    <button ion-button id="banksBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event,'bank')">
+        <ion-icon name="cash"></ion-icon>
       Banks
     </button>
 </ion-item>
 
 <ion-item>
-  <button ion-button id="clubsBtn" ion-button icon-start default="true" outline="true" color="primary" class="round" (click)="search($event,'night_club')">
+  <button ion-button id="clubsBtn" ion-button icon-start default="true" outline="true" clear color="primary" class="round" (click)="search($event,'night_club')">
+      <ion-icon name="musical-notes"></ion-icon>
     Night Clubs
   </button>
 </ion-item>
