@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar color="light">
@@ -11,44 +10,19 @@
 <ion-content id="linear-bg" padding>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
-      <ion-item>
-        <ion-label fixed>Title</ion-label>
-        <ion-input
-          type="text"
-          name="title"
-          ngModel
-          required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Short Description</ion-label>
-        <ion-textarea
-          name="description"
-          ngModel
-          required></ion-textarea>
-      </ion-item>
+        <ion-input type="text" name="title" placeholder="Title" ngModel required></ion-input>
+        <ion-textarea name="description" placeholder="Short Description" ngModel required></ion-textarea>
     </ion-list>
     <ion-grid>
       <ion-row>
         <ion-col>
-          <button 
-            ion-button
-            block
-            outline
-            type="button"
-            icon-left
-            (click)="onLocate()">
+          <button ion-button block outline type="button" icon-left (click)="onLocate()">
             <ion-icon name="locate"></ion-icon>
             Locate me
           </button>
         </ion-col>
         <ion-col>
-          <button
-            ion-button
-            block
-            outline
-            type="button"
-            icon-left
-            (click)="onOpenMap()">
+          <button ion-button block outline type="button" icon-left (click)="onOpenMap()">
             <ion-icon name="map"></ion-icon>
             Select on Map
           </button>
@@ -56,13 +30,8 @@
       </ion-row>
       <ion-row *ngIf="locationIsSet">
         <ion-col>
-          <agm-map  name="map"
-            [latitude]="location.lat"
-            [longitude]="location.lng"
-            [zoom]="16">
-            <agm-marker
-              [latitude]="location.lat"
-              [longitude]="location.lng"></agm-marker>
+          <agm-map name="map" [latitude]="location.lat" [longitude]="location.lng" [zoom]="16">
+            <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
           </agm-map>
         </ion-col>
       </ion-row>
@@ -73,13 +42,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <button
-            ion-button
-            icon-left
-            block
-            outline
-            type="button"
-            (click)="onTakePhoto()">
+          <button ion-button icon-left block outline type="button" (click)="onTakePhoto()">
             <ion-icon name="camera"></ion-icon>
             Open Camera
           </button>
@@ -92,12 +55,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <button
-            ion-button
-            color="primary"
-            block
-            type="submit"
-            >
+          <button ion-button color="primary" block type="submit">
             Add this Place
           </button>
         </ion-col>
